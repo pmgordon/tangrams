@@ -22,17 +22,6 @@ html , body {
     margin-right: auto;
 }
 
-#roleLabel {
-	height: 2%;
-	width: 50%;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: auto ;
-	left:0; right:0; top:0; bottom: 0;
-	position: absolute;
-}
-
 #instructs {
 	height: 2%;
 	width: 50%;
@@ -45,30 +34,16 @@ html , body {
 	font-size: 120%
 }
 
+.seperator {
+	display: inline-block;
+}
+
 #roundnumber {
-	height: 2%;
-	width: 5%;
-	text-align: center;
-	margin-left: 85%;
-	margin-top: 1%;
-	margin-right: auto;
-	margin-bottom: auto ;
-	left:0; right:0; top:20%; bottom: 0;
-	position: absolute;
-	font-size: 150%
+	display: inline-block;
 }
 
 #score {
-	height: 10%;
-	width: 20%;
-	text-align: center;
-	margin-left: 1%;
-	margin-top: 1%;
-	margin-right: auto;
-	margin-bottom: auto ;
-	left:0; right:0; top:20%; bottom: 0;
-	position: absolute;
-	font-size: 150%;
+	display: inline-block;
 }
 
 #submitbutton {

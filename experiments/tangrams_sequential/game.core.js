@@ -50,7 +50,7 @@ var game_core = function(options){
   this.roundNum = -1;
 
   // How many rounds do we want people to complete?
-  this.numRounds = 72;
+  this.numRounds = 48;
 
   this.trialInfo = {currStim: []};
   

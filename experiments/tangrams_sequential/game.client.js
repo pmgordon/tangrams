@@ -104,13 +104,13 @@ var client_onMessage = function (data) {
           var scoreDiff = target.name == clickedObjName ? 1 : 0;
           globalGame.data.subject_information.score += scoreDiff;
           // draw feedback
-          if (globalGame.my_role === globalGame.playerRoleNames.role1) {
-            highlightCell(globalGame, globalGame.get_player(globalGame.my_id), 'green',
-              function (x) { return x.name == clickedObjName; });
-          } else {
-            highlightCell(globalGame, globalGame.get_player(globalGame.my_id), 'green',
-              function (x) { return x.targetStatus == 'target'; });
-          }
+          // if (globalGame.my_role === globalGame.playerRoleNames.role1) {
+          //   highlightCell(globalGame, globalGame.get_player(globalGame.my_id), 'green',
+          //     function (x) { return x.name == clickedObjName; });
+          // } else {
+          //   highlightCell(globalGame, globalGame.get_player(globalGame.my_id), 'green',
+          //     function (x) { return x.targetStatus == 'target'; });
+          // }
           break;
 
         case 'alert': // Not in database, so you can't play...
