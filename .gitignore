@@ -36,3 +36,5 @@ credentials.pyc
 __pycache__
 *.png
 .ipynb_checkpoints
+
+data/*

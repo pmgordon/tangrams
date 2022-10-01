@@ -195,12 +195,10 @@ function mouseClickListener(evt) {
   var bRect = globalGame.viewport.getBoundingClientRect();
   var mouseX = (evt.clientX - bRect.left)*(globalGame.viewport.width/bRect.width);
   var mouseY = (evt.clientY - bRect.top)*(globalGame.viewport.height/bRect.height);
-
-  if (globalGame.messageSent) {
     //find which shape was clicked
     _.forEach(globalGame.objects, function(obj) {
       if (hitTest(obj, mouseX, mouseY)) {
-	globalGame.messageSent = false;
+	globalGame.messageSent = true;
 	highlightCell(globalGame, globalGame.get_player(globalGame.my_id), 'black',
 		      function(x){return x.name == obj.name;});
 	var packet = ["clickedObj", obj.name, obj.box,
@@ -208,7 +206,7 @@ function mouseClickListener(evt) {
 	globalGame.socket.send(packet.join('.'));
       }
     });
-  }
+
   return false;
 }
 
