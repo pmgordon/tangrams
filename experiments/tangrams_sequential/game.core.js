@@ -260,9 +260,9 @@ _.map(directorLocs, function(x) {
 };
 
 game_core.prototype.getRandomizedConditions = function() {
-  // want each tangram to be target 6 times
+  // want each tangram to be target 4 times
   var possibleTargets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
-  return _.flatten(_.times(6, function(n) {
+  return _.flatten(_.times(4, function(n) {
     return _.shuffle(_.map(possibleTargets, function(target) {
       return {target: target, occurrence: n+1};
     }));
