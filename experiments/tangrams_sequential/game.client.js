@@ -103,14 +103,16 @@ var client_onMessage = function (data) {
             function (x) { return x.targetStatus == 'target'; })[0];
           var scoreDiff = target.name == clickedObjName ? 1 : 0;
           globalGame.data.subject_information.score += scoreDiff;
+          var redGreen = (target.name === clickedObjName) ? "green" : "red"
           // draw feedback
-          // if (globalGame.my_role === globalGame.playerRoleNames.role1) {
-          //   highlightCell(globalGame, globalGame.get_player(globalGame.my_id), 'green',
-          //     function (x) { return x.name == clickedObjName; });
-          // } else {
-          //   highlightCell(globalGame, globalGame.get_player(globalGame.my_id), 'green',
-          //     function (x) { return x.targetStatus == 'target'; });
-          // }
+          
+          if (globalGame.my_role === globalGame.playerRoleNames.role1) {
+            highlightCell(globalGame, globalGame.get_player(globalGame.my_id), redGreen,
+              function (x) { return x.name == target.name; });
+          } else {
+            highlightCell(globalGame, globalGame.get_player(globalGame.my_id), redGreen,
+              function (x) { return  x.name == clickedObjName; });
+          }
           break;
 
         case 'alert': // Not in database, so you can't play...

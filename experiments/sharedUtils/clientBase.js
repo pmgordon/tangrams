@@ -22,6 +22,7 @@ var ondisconnect = function(data) {
   $('#submitbutton').hide();
   $('#roleLabel').hide();
   $('#score').hide();
+  $('#seperator').hide();
   $('#exit_survey').show();
 };
 
