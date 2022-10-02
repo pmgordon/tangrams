@@ -2,6 +2,19 @@ var utils = require('./sharedUtils.js');
 
 global.window = global.document = global;
 
+
+function get_round_count(query) {
+  const default_round_number = 48
+  let round_count = ("rounds" in query) ? query.rounds : default_round_number
+  round_count = parseInt(round_count)
+  round_count = (isNaN(round_count)) ? default_round_number : round_count
+  
+  // Always need multiples of 12
+  round_count = 12.0*Math.ceil(round_count/12.0)
+
+  return round_count;
+}
+
 // Construct server object
 module.exports = function(expName) {
   var gameServer = {
@@ -21,7 +34,7 @@ module.exports = function(expName) {
 
   // This is the important function that pairs people up into 'rooms'
   // all independent of one another.
-  gameServer.findGame = function(player) {
+  gameServer.findGame = function(player, query) {
     this.log('looking for a game. We have : ' + this.game_count);
     var joined_a_game = false;
     for (var gameid in this.games) {
@@ -39,7 +52,7 @@ module.exports = function(expName) {
 	// Add game to player
 	player.game = game;
 	player.role = game.playerRoleNames.role2;
-	player.send('s.join.' + game.players.length + '.' + player.role);
+	player.send('s.join.' + game.players.length + '.' + player.role + '.' + game.numRounds);
 
 	// notify existing players that someone new is joining
 	_.map(game.get_others(player.userid), function(p){
@@ -53,19 +66,24 @@ module.exports = function(expName) {
 
     // If you couldn't find a game to join, create a new one
     if(!joined_a_game) {
-      this.createGame(player);
+      this.createGame(player, query);
     }
   };
 
   // Will run when first player connects
-  gameServer.createGame = function(player) {
+  gameServer.createGame = function(player, query) {
     //Create a new game instance
+    var round_count = get_round_count(query);
+    var target_count = round_count / 12
     var options = {
       expName: expName,
       server: true,
       id : utils.UUID(),
       player_instances: [{id: player.userid, player: player}],
-      player_count: 1
+      player_count: 1,
+      round_count,
+      target_count
+
     };
     
     var game = new game_core(options);

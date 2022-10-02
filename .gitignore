@@ -2,6 +2,7 @@
 *.nb.html
 /writing/tangrams-old_cache
 *.DS_Store
+.vscode
 *~
 *RData
 *Rhistory

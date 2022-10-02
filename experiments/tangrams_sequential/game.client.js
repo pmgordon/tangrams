@@ -70,6 +70,7 @@ var client_onserverupdate_received = function (data) {
   globalGame.players_threshold = data.pt;
   globalGame.player_count = data.pc;
   globalGame.roundNum = data.roundNum;
+  globalGame.numRounds = data.numRounds;
   // update data object on first round, don't overwrite (FIXME)  
   if (!_.has(globalGame, 'data')) {
     globalGame.data = data.dataObj;
@@ -121,7 +122,7 @@ var client_onMessage = function (data) {
 
         case 'join': //join a game requested
           var num_players = commanddata;
-          client_onjoingame(num_players, commands[3]); break;
+          client_onjoingame(num_players, commands[3], commands[4]); break;
 
         case 'add_player': // New player joined... Need to add them to our list.
           console.log("adding player" + commanddata);
@@ -162,7 +163,7 @@ var customSetup = function (game) {
 
 };
 
-var client_onjoingame = function (num_players, role) {
+var client_onjoingame = function (num_players, role, argNumRounds) {
   // Need client to know how many players there are, so they can set up the appropriate data structure
   _.map(_.range(num_players - 1), function (i) {
     globalGame.players.unshift({ id: null, player: new game_player(globalGame) })
@@ -179,6 +180,8 @@ var client_onjoingame = function (num_players, role) {
   // set role locally
   globalGame.my_role = role;
   globalGame.get_player(globalGame.my_id).role = globalGame.my_role;
+  let numRounds = (globalGame.numRounds) ? globalGame.numRounds : argNumRounds;
+  $('#roundnumber').empty().append("Round ", 1," of ", numRounds);
 
   if (num_players == 1) {
     globalGame.get_player(globalGame.my_id).message = 'Waiting for other player to connect...';
