@@ -98,7 +98,7 @@ var initialize = function(query, client, id) {
   console.log('\t socket.io:: player ' + client.userid + ' connected');
 
   //Pass off to game.server.js code
-  gameServer.findGame(client);
+  gameServer.findGame(client, query);
   
   // Now we want set up some callbacks to handle messages that clients will send.
   // We'll just pass messages off to the server_onMessage function for now.

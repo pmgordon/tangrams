@@ -21,6 +21,6 @@ To run these experiments on your local machine:
    ```
    This means that you've successfully created a 'server' that can be accessed by copying and pasting 
    ```
-   http://localhost:8888/tangrams_sequential/index.html
+   http://localhost:8888/tangrams_sequential/index.html?rounds=<number of round (multiple of 12)>
    ```
    in one tab of your browser. You should see a waiting room. To connect the other player in another tab for test purposes, open a new tab and use the same URL. 

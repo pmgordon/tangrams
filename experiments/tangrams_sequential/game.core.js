@@ -50,7 +50,8 @@ var game_core = function(options){
   this.roundNum = -1;
 
   // How many rounds do we want people to complete?
-  this.numRounds = 48;
+  this.numRounds = options.round_count;
+  this.uniqueTarget = options.target_count;
 
   this.trialInfo = {currStim: []};
   
@@ -262,7 +263,7 @@ _.map(directorLocs, function(x) {
 game_core.prototype.getRandomizedConditions = function() {
   // want each tangram to be target 4 times
   var possibleTargets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
-  return _.flatten(_.times(4, function(n) {
+  return _.flatten(_.times(this.uniqueTarget, function(n) {
     return _.shuffle(_.map(possibleTargets, function(target) {
       return {target: target, occurrence: n+1};
     }));
@@ -359,6 +360,7 @@ game_core.prototype.server_send_update = function(){
     pc : this.player_count,
     dataObj  : this.data,
     roundNum : this.roundNum,
+    numRounds : this.numRounds,
     trialInfo: this.trialInfo
   };
 
