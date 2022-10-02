@@ -40,7 +40,6 @@ var drawObjects = function(game, player) {
 };
 
 var highlightCell = function(game, player, color, condition) {
-  console.log(condition)
   var targetObjects = _.filter(game.objects, condition);
   var customCoords = game.my_role == "director" ? 'directorCoords' : 'matcherCoords';
   for (var i = 0; i < targetObjects.length; i++){
