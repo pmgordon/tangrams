@@ -262,6 +262,28 @@ _.map(directorLocs, function(x) {
 
 game_core.prototype.getRandomizedConditions = function() {
   // want each tangram to be target 4 times
+  const fortyEightRoundsConst = [
+    {"target":"L","occurrence":1},{"target":"J","occurrence":1},{"target":"I","occurrence":1},
+    {"target":"H","occurrence":1},{"target":"C","occurrence":1},{"target":"F","occurrence":1},
+    {"target":"K","occurrence":1},{"target":"B","occurrence":1},{"target":"A","occurrence":1},
+    {"target":"E","occurrence":1},{"target":"D","occurrence":1},{"target":"G","occurrence":1},
+    {"target":"C","occurrence":2},{"target":"I","occurrence":2},{"target":"G","occurrence":2},
+    {"target":"B","occurrence":2},{"target":"L","occurrence":2},{"target":"A","occurrence":2},
+    {"target":"K","occurrence":2},{"target":"D","occurrence":2},{"target":"F","occurrence":2},
+    {"target":"E","occurrence":2},{"target":"J","occurrence":2},{"target":"H","occurrence":2},
+    {"target":"H","occurrence":3},{"target":"A","occurrence":3},{"target":"K","occurrence":3},
+    {"target":"E","occurrence":3},{"target":"F","occurrence":3},{"target":"G","occurrence":3},
+    {"target":"B","occurrence":3},{"target":"D","occurrence":3},{"target":"I","occurrence":3},
+    {"target":"L","occurrence":3},{"target":"C","occurrence":3},{"target":"J","occurrence":3},
+    {"target":"E","occurrence":4},{"target":"H","occurrence":4},{"target":"L","occurrence":4},
+    {"target":"F","occurrence":4},{"target":"J","occurrence":4},{"target":"A","occurrence":4},
+    {"target":"I","occurrence":4},{"target":"B","occurrence":4},{"target":"G","occurrence":4},
+    {"target":"D","occurrence":4},{"target":"K","occurrence":4},{"target":"C","occurrence":4}];
+  
+  if (this.numRounds === 48){
+    return fortyEightRoundsConst;
+  }
+  
   var possibleTargets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
   return _.flatten(_.times(this.uniqueTarget, function(n) {
     return _.shuffle(_.map(possibleTargets, function(target) {
