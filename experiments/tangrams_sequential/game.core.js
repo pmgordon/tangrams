@@ -288,6 +288,14 @@ game_core.prototype.getRandomizedConditions = function () {
     return fortyEightRoundsConst;
   }
 
+  if (this.numRounds === 36) {
+    return fortyEightRoundsConst.slice(0, 36);
+  }
+
+  if (this.numRounds === 12) {
+    return fortyEightRoundsConst.slice(36);
+  }
+
   var possibleTargets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
   return _.flatten(_.times(this.uniqueTarget, function (n) {
     return _.shuffle(_.map(possibleTargets, function (target) {
